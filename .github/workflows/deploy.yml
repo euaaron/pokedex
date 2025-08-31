@@ -34,14 +34,8 @@ jobs:
           corepack enable
           yarn install --immutable
 
-      - name: Run tests with coverage
-        run: yarn coverage
-
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage
+      - name: Run tests
+        run: yarn test
 
   build:
     needs: test
@@ -67,17 +61,6 @@ jobs:
         env:
           # Lets vite.config.ts compute the repo base from this
           GITHUB_REPOSITORY: ${{ github.repository }}
-
-      - name: Download coverage artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage
-          path: coverage
-
-      - name: Include coverage summary in Pages artifact
-        run: |
-          mkdir -p dist/coverage
-          cp coverage/coverage-summary.json dist/coverage/coverage-summary.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
