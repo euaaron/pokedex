@@ -71,13 +71,13 @@ jobs:
       - name: Download coverage artifact
         uses: actions/download-artifact@v4
         with:
-          name: coverage-report
-          path: coverage-report
+          name: coverage
+          path: coverage
 
       - name: Include coverage summary in Pages artifact
         run: |
           mkdir -p dist/coverage
-          cp coverage-report/coverage/coverage-summary.json dist/coverage/coverage-summary.json
+          cp coverage/coverage-summary.json dist/coverage/coverage-summary.json
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
