@@ -1,0 +1,23 @@
+$accentColor: #646cff;
+$darkBackgroundColor: #242424;
+$darkForegroundColor: rgba(255, 255, 255, 0.87);
+$lightBackgroundColor: #ffffff;
+$lightForegroundColor: #213547;
+
+@media (prefers-color-scheme: light) {
+  $background: $lightBackgroundColor;
+  $foreground: $lightForegroundColor;
+  :root {
+    --background: $lightBackgroundColor;
+    --foreground: $lightForegroundColor;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  $background: $darkBackgroundColor;
+  $foreground: $darkForegroundColor;
+  :root {
+    --background: $darkBackgroundColor;
+    --foreground: $darkForegroundColor;
+  }
+}

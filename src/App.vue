@@ -4,6 +4,9 @@ import Pokedex from './components/Pokedex.vue'
 </script>
 
 <template>
-  <Pokedex />
-  <Footer />
+  <div id="page-light" aria-hidden="true"></div>
+  <div class="app-content">
+    <Pokedex />
+    <Footer />
+  </div>
 </template>

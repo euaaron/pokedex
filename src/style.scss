@@ -1,0 +1,90 @@
+@use "sass:color";
+@use "./_variables.scss" as *;
+
+:root {
+  --accent: $accentColor;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: color.adjust($accentColor, $lightness: 10%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* default page background and the animated "light" element */
+body {
+  background: var(--background);
+  transition: background-color 0.6s ease-in-out;
+}
+
+#page-light {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  /* radial glow that uses the active pokemon color */
+  background: radial-gradient(circle at 0% 0%,
+      color-mix(in srgb, var(--active-pokemon-color, transparent) 60%, transparent 0%),
+      transparent 40%);
+
+  opacity: calc(var(--pokemon-active, 0));
+  transition: opacity 0.6s ease-in-out;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
