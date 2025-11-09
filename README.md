@@ -18,11 +18,10 @@
 ## What this app does
 
 An interactive Pokédex built with Vue 3 and Vite:
-- Loads the Kanto Pokédex and renders Pokémon as themed cards.
+- Loads the National Pokédex and renders Pokémon as themed cards.
 - Infinite scroll: shows items in batches and loads more as you reach the end.
 - Each card is color-themed from species color and shows the sprite and Dex number.
-- Plays the Pokémon cry on hover/focus with a global mute toggle.
-- Deployed to GitHub Pages via GitHub Actions.
+- Plays the Pokémon cry on click/focus with a global mute button.
 
 ## How to run
 

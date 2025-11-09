@@ -4,7 +4,7 @@ import { usePokemon } from '../lib/api/pokeapi';
 import { usePokemonColor } from '../lib/hooks/usePokemonColor';
 import type { DexPokemon } from '../lib/models/pokedex';
 
-const props = defineProps<{ dexPokemon: DexPokemon }>();
+const props = defineProps<{ dexPokemon: DexPokemon; muteCries?: boolean }>();
 
 const { data: pokemon } = usePokemon(props.dexPokemon.entry_number);
 const pokemonColor = usePokemonColor(props.dexPokemon.entry_number);
@@ -20,7 +20,7 @@ const crySrc = computed<string | null>(() => {
 const audioEl = ref<HTMLAudioElement | null>(null);
 function playCry() {
   const el = audioEl.value;
-  if (!el || !crySrc.value) return;
+  if (!el || !crySrc.value || props.muteCries) return;
   try {
     el.pause();
     el.currentTime = 0;

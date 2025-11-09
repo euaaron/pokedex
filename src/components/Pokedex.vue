@@ -10,6 +10,8 @@ const itemsToShow = ref(batchSize);
 const sentinel = ref<HTMLElement | null>(null);
 let observer: IntersectionObserver | null = null;
 
+const muteCries = ref(false);
+
 const visibleEntries = computed(() =>
   pokedex.value ? pokedex.value.pokemon_entries.slice(0, itemsToShow.value) : []
 );
@@ -80,11 +82,14 @@ watch(
     <div class="header-bar">
       <h1 v-if="pokedex"><img src="../assets/pokeball.svg" alt="A pokeball" /> {{ pokedex.name }} Pokedex</h1>
       <h1 v-else><img class="spin" src="../assets/pokeball.svg" alt="A pokeball" /> Loading...</h1>
+      <button v-if="pokedex" class="mute-toggle" :aria-pressed="muteCries" @click="muteCries = !muteCries">
+        {{ muteCries ? 'Unmute cries' : 'Mute cries' }}
+      </button>
     </div>
     <p v-if="pokedex">{{ pokedex.description }}</p>
   </header>
   <section id="pokedex" v-if="pokedex">
-    <Card v-for="entry in visibleEntries" :key="entry.entry_number" :dexPokemon="entry" />
+    <Card v-for="entry in visibleEntries" :key="entry.entry_number" :dexPokemon="entry" :muteCries="muteCries" />
     <div v-if="hasMore" ref="sentinel" class="sentinel" aria-hidden="true"></div>
   </section>
 </template>
