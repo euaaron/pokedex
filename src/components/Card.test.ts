@@ -45,11 +45,11 @@ describe('Card', () => {
         muteCries: true,
       },
     })
-    await wrapper.find('button').trigger('mouseenter')
+    await wrapper.find('button').trigger('click')
     expect(playSpy).not.toHaveBeenCalled()
   })
 
-  it('plays cry once on hover when unmuted', async () => {
+  it('plays cry once on click when unmuted', async () => {
     const playSpy = vi.spyOn(HTMLMediaElement.prototype, 'play')
     const wrapper = shallowMount(Card, {
       props: {
@@ -57,7 +57,7 @@ describe('Card', () => {
         muteCries: false,
       },
     })
-    await wrapper.find('button').trigger('mouseenter')
+    await wrapper.find('button').trigger('click')
     expect(playSpy).toHaveBeenCalledTimes(1)
   })
 
