@@ -79,9 +79,9 @@ describe('Pokedex', () => {
   it('toggles mute button text', async () => {
     const wrapper = shallowMount(Pokedex)
     const btn = wrapper.find('button.mute-toggle')
-    expect(btn.text().toLowerCase()).toContain('unmute')
-    await btn.trigger('click')
     expect(btn.text().toLowerCase()).toContain('mute')
+    await btn.trigger('click')
+    expect(btn.text().toLowerCase()).toContain('unmute')
   })
 
   it('shows loading header when pokedex is not yet available', () => {
